@@ -1,7 +1,3 @@
-# the  "triang_Euclidean()" function
-# write about roudn to theises
-# round matrix on each step ebcause it can cause a lot of almost zeor coffecient with very big degree
-
 lead_coef <- function(p)
 {
   stopifnot(polynom::is.polynomial(p))
@@ -79,7 +75,6 @@ transf_exchange_row <- function(transf, first_row, second_row)
   return(transf)
 }
 
-
 transf_mult_row <- function(transf, row_idx, mult)
 {
   transf$m$dlist[[row_idx]] <- lapply(transf$m$dlist[[row_idx]], function(p) {p * mult})
@@ -156,6 +151,3 @@ triang_Euclidean <- function(pm)
   transf$u$symb <- transf$m$symb
   return(list(T=transf$m, U=transf$u))
 }
-
-# -----
-# fine
