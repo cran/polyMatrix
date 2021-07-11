@@ -39,22 +39,21 @@ triang_Interpolation <- function(pm, point_vector, round_digits=5, eps=.Machine$
   #' @param eps calculation zero errors
   #' @return Tranfortmaiton matrix
   #'
-  #' @examples
-  #' A <- polyMgen.d(3,2,ch2pn(c("x-1","2","0","x^2-1","2*x+2","3")))
-  #'
-  #' triang_Interpolation(A, -2:2)
-  #' # 0.79057 - 0.31623*x + 0.15812*x^2   -0.57735 - 0.57735*x
-  #' # 0.47434 - 0.15811*x - 1e-05*x^2     0.57735
-  #'
-  #' triang_Interpolation(A, -10:10)
-  #' # 0.79057 - 0.3161*x + 0.15803*x^2   0.25574 - 0.3541*x - 0.60984*x^2
-  #' # 0.47448 - 0.15807*x                -0.25574 + 0.60984*x
+  # @examples
+  # A <- polyMgen.d(3,2,ch2pn(c("x-1","2","0","x^2-1","2*x+2","3")))
+  #
+  # triang_Interpolation(A, -2:2)
+  # # 0.79057 - 0.31623*x + 0.15812*x^2   -0.57735 - 0.57735*x
+  # # 0.47434 - 0.15811*x - 1e-05*x^2     0.57735
+  #
+  # triang_Interpolation(A, -10:10)
+  # # 0.79057 - 0.3161*x + 0.15803*x^2   0.25574 - 0.3541*x - 0.60984*x^2
+  # # 0.47448 - 0.15807*x                -0.25574 + 0.60984*x
 
-  pm <- polyMconvert.dlist(pm)
 
   # numerical matrix of values should contains enough rows for store all values from point_vector
   # and enough columns to store all degrees
-  degree <- max(degree_matrix(pm))
+  degree <- degree(pm)
   point_number <- length(point_vector)
   hyp_nrow <- nrow(pm)
   hyp_ncol <- ncol(pm)
@@ -64,7 +63,7 @@ triang_Interpolation <- function(pm, point_vector, round_digits=5, eps=.Machine$
 
   # build numerical matrix
   for(hyp_row in 1:hyp_nrow) {
-    hyp_row_polynomials <- pm$dlist[[hyp_row]]
+    hyp_row_polynomials <- pm[hyp_row, ]
     for(sub_row in 1:point_number) {
       point <- point_vector[sub_row]
       sub_values <- sapply(hyp_row_polynomials, function(p) predict(p, point))
@@ -101,14 +100,12 @@ triang_Interpolation <- function(pm, point_vector, round_digits=5, eps=.Machine$
   }
 
   # select polynomial coef from Uv
-  dlist <- vector("list", hyp_ncol * hyp_ncol)
+  L <- polyMatrix(0, hyp_nrow, hyp_ncol)
   for(row in 1:hyp_ncol) {
     for(col in 1:hyp_ncol) {
       source_rows <- ((degree):0) * hyp_ncol + row
-      dlist[[(row - 1) * hyp_ncol + col]] <- polynom::polynomial(Uv[source_rows, col])
+      L[row, col] <- polynom::polynomial(Uv[source_rows, col])
     }
   }
-  # build matrix
-  result <- polyMgen.d(nrow=hyp_ncol, ncol=hyp_ncol, rawData = dlist, symb=pm$symb, byrow = TRUE)
-  return(result)
+  return(L)
 }
