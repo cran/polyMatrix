@@ -4,7 +4,7 @@
 \name{polyMatrixCharPolynomial-class}
 \alias{polyMatrixCharPolynomial-class}
 \alias{polyMatrixCharClass}
-\title{A class to repesent characteristic polynomial of polynomial matrix}
+\title{A class to repesent characteristic polynomial of a polynomial matrix}
 \description{
-Characteristic polynomial of polynomial matrix is polynomial with polynomial coefficients
+Characteristic polynomial of a polynomial matrix is a polynomial with polynomial coefficients
 }

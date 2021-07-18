@@ -1,5 +1,5 @@
 Package: polyMatrix
-Version: 0.9.11
+Version: 0.9.16
 Title: Infrastructure for Manipulation Polynomial Matrices
 Description: 
   Implementation of class "polyMatrix" for storing a matrix of polynomials and implements 
@@ -20,7 +20,7 @@ Type: Package
 Authors@R: c(
     person("Tamas", "Prohle", email="prohlet@ludens.elte.hu", role="aut"),
     person("Peter", "Prohle", email="prohlep@math.elte.hu", role="aut"),
-    person("Nikolai", "Ryzhkov", email="namezys@gmail.com", role=c("aut", "cre")),
+    person("Nikolai", "Ryzhkov", email="namezys@gmail.com", role=c("aut", "cre"), comment = c(ORCID = "0000-0003-4896-280X")),
     person("Ildiko", "Laszlo", role="aut", comment = c(ORCID = "0000-0003-2324-8183")),
     person("Ulas Onat", "Alakent", role="ctb")
     )
@@ -33,11 +33,11 @@ URL: https://github.com/namezys/polymatrix
 BugReports: https://github.com/namezys/polymatrix/issues
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2021-07-11 21:24:48 UTC; namezys
+Packaged: 2021-07-18 13:48:59 UTC; namezys
 Author: Tamas Prohle [aut],
   Peter Prohle [aut],
-  Nikolai Ryzhkov [aut, cre],
+  Nikolai Ryzhkov [aut, cre] (<https://orcid.org/0000-0003-4896-280X>),
   Ildiko Laszlo [aut] (<https://orcid.org/0000-0003-2324-8183>),
   Ulas Onat Alakent [ctb]
 Maintainer: Nikolai Ryzhkov <namezys@gmail.com>
-Date/Publication: 2021-07-11 21:50:02 UTC
+Date/Publication: 2021-07-18 14:00:02 UTC
